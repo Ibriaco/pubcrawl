@@ -3,5 +3,4 @@ export const STEPS = [
   "Birrificio Lambrate",
   "Au Vieux Strasb.",
   "Union Club",
-  "Bar Picchio",
 ];

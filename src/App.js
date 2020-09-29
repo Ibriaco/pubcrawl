@@ -28,6 +28,7 @@ import {
   LOCATION,
   STEPS,
   TIP,
+  TIP_2
 } from "./constants/labels.js";
 
 const App = () => {
@@ -39,7 +40,7 @@ const App = () => {
   return (
     <PageContainer>
       <TicketContainer>
-        <SuperiorWrapper>{TITLE}</SuperiorWrapper>
+        <SuperiorWrapper style = {{ marginBottom: 10  }}>{TITLE}</SuperiorWrapper>
         <CentralWrapper isMobile={isMobile}>
           {!isMobile && (
             <ImgBarCodeWrapper>
@@ -88,7 +89,8 @@ const App = () => {
                 marginTop: isMobile ? 30 : 10,
               }}
             />
-            <div style={{ fontSize: 8, marginTop: 20 }}>{TIP}</div>
+            <div style={{ fontSize: 10, marginTop: 20 }}>{TIP}</div>
+            <div style={{ fontSize: 12, marginTop: 10, fontWeight: "bold", color: "red" }}>{TIP_2}</div>
           </div>
           {isMobile && (
             <IconsMobileWrapper>
