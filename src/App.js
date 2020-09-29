@@ -43,7 +43,7 @@ const App = () => {
         <CentralWrapper isMobile={isMobile}>
           {!isMobile && (
             <ImgBarCodeWrapper>
-              <img src={barCodeImg} style={{ height: 200 }}></img>
+              <img src={barCodeImg} alt="barcode" style={{ height: 200 }}></img>
             </ImgBarCodeWrapper>
           )}
           <div
@@ -97,7 +97,11 @@ const App = () => {
           )}
           {isMobile && (
             <BarCodeMobileWrapper>
-              <img src={barCodeImg} style={{ height: 200 }}></img>
+              <img
+                alt="barcode-mobile"
+                src={barCodeImg}
+                style={{ height: 200 }}
+              ></img>
             </BarCodeMobileWrapper>
           )}
         </CentralWrapper>

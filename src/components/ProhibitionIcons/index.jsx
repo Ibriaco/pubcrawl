@@ -22,13 +22,17 @@ export const ProhibitionIcons = () => {
       }}
     >
       <Circle>
-        <img src={Mascherina} style={{ height: 30, width: 30 }} />
+        <img
+          alt="mascherina"
+          src={Mascherina}
+          style={{ height: 30, width: 30 }}
+        />
       </Circle>
       <Circle>
-        <img src={Condom} style={{ height: 30, width: 30 }} />
+        <img alt="condom" src={Condom} style={{ height: 30, width: 30 }} />
       </Circle>
       <Circle>
-        <img src={Birra} style={{ height: 28, width: 28 }} />
+        <img alt="birra" src={Birra} style={{ height: 28, width: 28 }} />
       </Circle>
     </div>
   );
