@@ -1,96 +1,67 @@
 import React from "react";
-import "./App.css";
 
-import { PageContainer, TicketContainer, Circle } from "./styles.js";
+import {
+  PageContainer,
+  TicketContainer,
+  SuperiorWrapper,
+  ImgBarCodeWrapper,
+  IconsMobileWrapper,
+  CentralWrapper,
+  BarCodeMobileWrapper,
+  InferiorBlock,
+  CentrateWrapper,
+} from "./styles.js";
 
-import barCodeImg from "./barCode.png";
-import { CustomizedSteppers } from "./steppe";
+import barCodeImg from "img/barCode.png";
+import { CustomizedSteppers } from "components/Stepper";
 
-import Mascherina from "./mascherina.png";
-import Condom from "./condom.png";
-import Birra from "./birra.png";
-import { useWindowSize } from "./sizeHook";
+import { useWindowSize } from "utils/sizeHook";
+import { ProhibitionIcons } from "components/ProhibitionIcons";
+import { MOBILE_SIZE, TABLET_SIZE } from "./constants/size.js";
+import {
+  DATE,
+  LOCATION_PLACE,
+  START,
+  START_DATE,
+  START_TIME,
+  TITLE,
+  LOCATION,
+  STEPS,
+  TIP,
+} from "./constants/labels.js";
 
 const App = () => {
   const { width } = useWindowSize();
 
-  const isMobile = width < 650;
-  const isMiniMobile = width < 375;
-
-  const prohibitionIcons = () => (
-    <div
-      style={{
-        position: isMobile ? "block" : "absolute",
-        right: 0,
-        display: "flex",
-      }}
-    >
-      <Circle>
-        <img src={Mascherina} style={{ height: 30, width: 30 }} />
-      </Circle>
-      <Circle>
-        <img src={Condom} style={{ height: 30, width: 30 }} />
-      </Circle>
-      <Circle>
-        <img src={Birra} style={{ height: 28, width: 28 }} />
-      </Circle>
-    </div>
-  );
+  const isMobile = width < TABLET_SIZE;
+  const isMiniMobile = width < MOBILE_SIZE;
 
   return (
     <PageContainer>
       <TicketContainer>
-        <div
-          style={{
-            backgroundColor: "red",
-            padding: "30px 0 5px",
-            borderRadius: "40px 40px 0 0 ",
-            color: "white",
-            fontWeight: 700,
-            fontSize: 32,
-            paddingLeft: 20,
-          }}
-        >
-          PUB CRAWL
-        </div>
-        <div
-          style={{
-            backgroundColor: "white",
-            display: isMobile ? "block" : "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: isMobile ? 21 : 10,
-          }}
-        >
+        <SuperiorWrapper>{TITLE}</SuperiorWrapper>
+        <CentralWrapper isMobile={isMobile}>
           {!isMobile && (
-            <div
-              style={{
-                width: "20%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "10px 0",
-              }}
-            >
+            <ImgBarCodeWrapper>
               <img src={barCodeImg} style={{ height: 200 }}></img>
-            </div>
+            </ImgBarCodeWrapper>
           )}
           <div
             style={{ width: isMobile ? "100%" : "80%", position: "relative" }}
           >
-            {!isMobile && prohibitionIcons()}
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <div style={{ marginRight: 10 }}>Data:</div>
-              <div style={{ fontWeight: 600 }}>Venerdì 25 SETTEMBRE</div>
-            </div>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <div style={{ marginRight: 10 }}>Location:</div>
-              <div style={{ fontWeight: 600 }}>LAMBRATE</div>
-            </div>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <div style={{ marginRight: 10 }}>Inizio ore:</div>
-              <div style={{ fontWeight: 600 }}>21.00</div>
-            </div>
+            {!isMobile && <ProhibitionIcons />}
+            <CentrateWrapper>
+              <div style={{ marginRight: 10 }}>{`${DATE}:`}</div>
+              <div style={{ fontWeight: 600 }}>{START_DATE}</div>
+            </CentrateWrapper>
+            <CentrateWrapper>
+              <div style={{ marginRight: 10 }}>{`${LOCATION}:`}</div>
+              <div style={{ fontWeight: 600 }}>{LOCATION_PLACE}</div>
+            </CentrateWrapper>
+            <CentrateWrapper>
+              <div style={{ marginRight: 10 }}>{`${START}:`}</div>
+              <div style={{ fontWeight: 600 }}>{START_TIME}</div>
+            </CentrateWrapper>
             <div
               style={{
                 display: isMobile ? "block" : "flex",
@@ -103,7 +74,7 @@ const App = () => {
                   marginBottom: isMobile ? 20 : 0,
                 }}
               >
-                Steps:
+                {`${STEPS}:`}
               </div>
               <CustomizedSteppers
                 isMobile={isMobile}
@@ -117,48 +88,20 @@ const App = () => {
                 marginTop: isMobile ? 30 : 10,
               }}
             />
-            <div style={{ fontSize: 8, marginTop: 20 }}>
-              A ogni tappa verrà imposta una regola diversa che tutti dovranno
-              rispettare. Le pub rules verranno rivelate all'inizio di ogni
-              tappa.
-            </div>
+            <div style={{ fontSize: 8, marginTop: 20 }}>{TIP}</div>
           </div>
           {isMobile && (
-            <div
-              style={{
-                height: 80,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              {prohibitionIcons()}
-            </div>
+            <IconsMobileWrapper>
+              <ProhibitionIcons />
+            </IconsMobileWrapper>
           )}
           {isMobile && (
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "0 0 0 0px",
-                transform: "rotate(-90deg)",
-                height: 80,
-              }}
-            >
+            <BarCodeMobileWrapper>
               <img src={barCodeImg} style={{ height: 200 }}></img>
-            </div>
+            </BarCodeMobileWrapper>
           )}
-        </div>
-        <div
-          style={{
-            backgroundColor: "red",
-            height: 10,
-            padding: 10,
-            borderRadius: "0 0 40px 40px",
-          }}
-        />
+        </CentralWrapper>
+        <InferiorBlock />
       </TicketContainer>
     </PageContainer>
   );
